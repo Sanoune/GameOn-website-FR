@@ -13,7 +13,12 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const btnFermer = document.querySelector(".close");
-const btnSumbit = document.getElementById("lol");
+const btnValider = document.getElementById("btn-valider");
+const modalContent = document.getElementById("modal-content")
+const modalFinFormulaire = document.querySelector(".modal-fin-formulaire")
+const inputFermerFormulaire = document.getElementById("input-fermer-formulaire") 
+
+
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -22,11 +27,18 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 function launchModal() {
   modalbg.style.display = "block";
 }
-
 //launch modal btn fermer
 btnFermer.addEventListener("click", () => {
   modalbg.style.display = "none";
 });
+
+// input fermer formulaire
+inputFermerFormulaire.addEventListener("click", () => {
+  modalbg.style.display = "none";
+});
+
+
+//launch modal btn formulaire valide
 
 // Soumission formulaire
 document
@@ -53,6 +65,7 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
+
 //function validation formulaire
 function validate() {
   //recuperation des ID du formulaire
@@ -61,6 +74,10 @@ function validate() {
   const email = document.getElementById("email").value;
   const birthdate = document.getElementById("birthdate").value;
   const quantity = document.getElementById("quantity").value;
+  const villes = document.querySelectorAll(".verification-ville");
+const condition = document.getElementById("checkbox1");
+
+
 
   //verification validation de tous les elements avc valeur true qui passe a fals si un element non valide
   let correct = true;
@@ -106,7 +123,36 @@ function validate() {
     document.getElementById("boxSpanNbTournoi").innerHTML = "";
   }
 
-  if (correct === true) {
-    document.getElementById("modal-content").innerHTML = "";
+
+  //verification pour checkbox ville 
+  //recherche dans tous les inputs villes si une et coché, si une est coché anychecked deviens true
+  let anyChecked = false;
+  villes.forEach(function(input) {
+      if (input.checked){
+          anyChecked = true;
+      }
+  });
+  // si anycheck est toujours fals, je creer un span error
+  if (!anyChecked) {
+      createSpan("Veuillez choisir une ville.", "boxSpanVilles");
+      correct = false;
+  } else {
+      document.getElementById("boxSpanVilles").innerHTML = "";
   }
+
+  if (!condition.checked){
+    createSpan("Veuillez accepter les conditions d'utilisation.", "boxSpanCondition");
+      correct = false; 
+  } else {
+    document.getElementById("boxSpanCondition").innerHTML = "";
 }
+
+  
+  
+  if (correct === true) {
+      modalContent.style.display = "none";
+      modalFinFormulaire.style.display = "flex";
+    };
+  }
+ 
+  btnValider.addEventListener("click", validate);

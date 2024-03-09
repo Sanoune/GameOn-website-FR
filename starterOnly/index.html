@@ -15,10 +15,11 @@
     />
   </head>
   <body>
+   <div class="cadre-site">
     <div class="topnav" id="myTopnav">
       <div class="logo-icon-responsive">
         <div class="header-logo">
-          <img alt="logo" src="Logo.png" width="auto" height="auto" />
+          <img class="logo" alt="logo" src="Logo.png" width="auto" height="auto" />
         </div>
         <a href="javascript:void(0);" class="icon" onclick="editNav()">
           <i class="fa fa-bars"></i>
@@ -52,7 +53,16 @@
       <div class="bground">
         <div class="content">
           <span class="close"></span>
+          <div class="modal-fin-formulaire">
+            <input
+            id="input-fermer-formulaire"
+            class="btn-submit"
+            type="submit"
+            value="Fermer"
+          />
+          </div>
           <div class="modal-body" id="modal-content">
+         
             <form
               novalidate
               name="reserve"
@@ -120,7 +130,7 @@
               </p>
               <div class="formData">
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input verification-ville"
                   type="radio"
                   id="location1"
                   name="location"
@@ -131,7 +141,7 @@
                   New York</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input verification-ville"
                   type="radio"
                   id="location2"
                   name="location"
@@ -142,7 +152,7 @@
                   San Francisco</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input verification-ville"
                   type="radio"
                   id="location3"
                   name="location"
@@ -153,7 +163,7 @@
                   Seattle</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input verification-ville"
                   type="radio"
                   id="location4"
                   name="location"
@@ -164,7 +174,7 @@
                   Chicago</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input verification-ville"
                   type="radio"
                   id="location5"
                   name="location"
@@ -175,7 +185,7 @@
                   Boston</label
                 >
                 <input
-                  class="checkbox-input"
+                  class="checkbox-input verification-ville"
                   type="radio"
                   id="location6"
                   name="location"
@@ -199,7 +209,9 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <div id="boxSpanCondition"></div>
                 <br />
+                
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
                   <span class="checkbox-icon"></span>
@@ -209,6 +221,7 @@
               </div>
               <input
                 class="btn-submit"
+                id="btn-valider"
                 type="submit"
                 class="button"
                 value="C'est parti"
@@ -222,5 +235,6 @@
       <p class="copyrights">Copyright 2014 - 2022, GameOn Inc.</p>
     </footer>
     <script src="modal.js"></script>
+  </div>
   </body>
 </html>

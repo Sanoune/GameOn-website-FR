@@ -21,6 +21,11 @@ body {
   margin: 0 auto;
 }
 
+.cadre-site {
+  padding: 30px;
+  display: grid;
+}
+
 p {
   margin-bottom: 0;
   padding: 0.5vw;
@@ -30,9 +35,8 @@ img {
   padding-right: 1rem;
 }
 
-.topnav {
-  /* overflow: hidden; */
-  margin: 3.5%;
+.logo{
+  margin-left: 43px;
 }
 .header-logo {
   float: left;
@@ -54,6 +58,8 @@ img {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+  text-decoration: underline;
+  text-decoration-color: #ffffff;
 }
 
 .topnav a.active {
@@ -64,62 +70,25 @@ img {
 
 .topnav .icon {
   display: none;
+  color: #ff0000;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  /* .topnav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  } */
+.modal-fin-formulaire {
+  display: none;
+  height: 708px;
+  width: 100%;
+  margin: 15px auto;
+  justify-content: center;
+  align-items: end;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav.responsive {
-    position: relative;
-    overflow: visible;
-  }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-  }
-
-  /* .responsive .element-nav {
-    padding-right: 124px;
-  } */
-}
-
-@media screen and (max-width: 540px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-}
 
 main {
   font-size: 130%;
   font-weight: bolder;
   color: black;
-  padding-top: 0.5vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 1px 20px 15px;
+  padding: 0px 40px;
+  margin: auto;
   border-radius: 2rem;
   text-align: justify;
 }
@@ -488,9 +457,9 @@ input[data-error]::after {
   display: none;
 }
 footer {
-  padding-left: 2vw;
+  /* padding-left: 2vw;
   padding-right: 2vw;
-  margin: 0 20px;
+  margin: 0 20px; */
 }
 
 @media (min-width: 1024px) {
@@ -498,47 +467,81 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 40px;
+  }
+  .topnav a {
+    padding: 12px 12px;
+    margin: 0px;
   }
 }
-@media screen and (max-width: 800px) {
-  body {
-    margin-top: 15px;
+
+
+@media screen and (max-width: 1023px) {
+  main {
+    padding: 0px;
   }
-  .hero-section {
-    display: block;
-    box-shadow: unset;
+  .hero-content::after {
+    content: unset;
+  }
+  .header-logo img {
+    height: 19px;
+    width: auto;
+  }
+  .logo{
+    margin-left: 0px;
+  }
+  .logo-icon-responsive {
+    display: flex;
+    justify-content: space-between;
+  }
+  .cadre-site{
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-content {
+    background: #fff;
+    color: #000;
+    padding: 0px;
+    margin: 0px;
+    margin-top: 35px;
+    min-width: 0px;
   }
   .main-navbar {
     display: flex;
     flex-direction: column;
     align-items: baseline;
   }
-  .element-nav {
-    padding: 20px;
-  }
-  .logo-icon-responsive {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 44px;
-  }
-  .header-logo img {
-    height: 19px;
-    width: auto;
-  }
-  .hero-content {
-    background: #fff;
-    color: #000;
-    padding: 20px;
-    min-width: 0px;
-  }
-  .hero-content::after {
-    content: unset;
-  }
   .hero-content .btn-signup {
     display: none;
   }
+  .topnav a {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+    margin-top: -15px;
+  }
+  .topnav.responsive {
+    position: relative;
+    overflow: visible;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+  }
+   
+  .hero-section {
+    display: block;
+    box-shadow: unset;
+  }
   .hero-headline {
-    font-size: 2rem;
+    font-size: 40px;
     white-space: normal;
   }
   .hero-text {
@@ -558,7 +561,19 @@ footer {
     margin-top: 50px;
     text-align: center;
   }
+  .responsive .element-nav span {
+    flex: 1;
+  }
+  .responsive .element-nav {
+    display: flex;
+  }
+  
+  .element-nav {
+    padding: 20px;
+  }
 }
+
+
 
 @keyframes modalopen {
   from {
