@@ -14,9 +14,10 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const btnFermer = document.querySelector(".close");
 const btnValider = document.getElementById("btn-valider");
-const modalContent = document.getElementById("modal-content")
-const modalFinFormulaire = document.querySelector(".modal-fin-formulaire")
-const inputFermerFormulaire = document.getElementById("input-fermer-formulaire") 
+const modalContent = document.getElementById("modal-content");
+const modalFinFormulaire = document.querySelector(".modal-fin-formulaire");
+const inputFermerFormulaire = document.getElementById("input-fermer-formulaire");
+const body = document.querySelector("body");
 
 
 
@@ -25,17 +26,28 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+showModal(true)
+
 }
 //launch modal btn fermer
 btnFermer.addEventListener("click", () => {
-  modalbg.style.display = "none";
+showModal(false)
 });
 
 // input fermer formulaire
 inputFermerFormulaire.addEventListener("click", () => {
-  modalbg.style.display = "none";
+ showModal(false)
 });
+
+function showModal(bool) {
+  if (bool) {
+    modalbg.style.display = "block";
+    body.style.overflow = "hidden";
+  } else {
+    modalbg.style.display = "none";
+    body.style.overflow = "auto";
+  }
+}
 
 
 //launch modal btn formulaire valide
@@ -110,7 +122,7 @@ const condition = document.getElementById("checkbox1");
   } else {
     document.getElementById("boxSpanEmail").innerHTML = "";
   }
-  if (birthdate === "") {
+  if (/^\d+$/.test(birthdate)) {
     createSpan("Entrez une date d'anniversaire.", "boxSpanNaissance");
     correct = false;
   } else {
@@ -151,7 +163,7 @@ const condition = document.getElementById("checkbox1");
   
   if (correct === true) {
       modalContent.style.display = "none";
-      modalFinFormulaire.style.display = "flex";
+      modalFinFormulaire.style.display = "block";
     };
   }
  
