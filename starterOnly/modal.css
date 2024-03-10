@@ -161,7 +161,7 @@ main {
 }
 
 .content {
-  margin: 5% auto;
+  margin: 0% auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -176,7 +176,7 @@ main {
 
 .modal-body {
   padding: 15px 8%;
-  margin: 15px auto;
+  margin: 0px auto;
 }
 
 .error-message {
@@ -529,8 +529,10 @@ footer {
   .hero-content .btn-signup {
     display: none;
   }
-  .topnav a {
-   
+  .bground {
+    background-color:transparent;
+    position: absolute;
+    margin-top: 81px;
   }
   .topnav a.icon {
     float: right;

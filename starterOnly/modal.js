@@ -42,10 +42,10 @@ inputFermerFormulaire.addEventListener("click", () => {
 function showModal(bool) {
   if (bool) {
     modalbg.style.display = "block";
-    body.style.overflow = "hidden";
+   
   } else {
     modalbg.style.display = "none";
-    body.style.overflow = "auto";
+    
   }
 }
 
