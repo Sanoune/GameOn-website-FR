@@ -114,7 +114,7 @@ function validate() {
     document.getElementById("errorSpanEmail").innerHTML = "";
   }
 
-  if (!birthdate.trim()) {
+  if (birthdate.trim() == "") {
     createSpan(
       "Veuillez entrer votre date de naissance.",
       "errorSpanNaissance"
@@ -132,13 +132,13 @@ function validate() {
   }
 
   // Vérification des villes sélectionnées
-  let anyChecked = false;
+  let nbChecked = 0;
   villes.forEach(function (input) {
     if (input.checked) {
-      anyChecked = true;
+      nbChecked++;
     }
   });
-  if (!anyChecked) {
+  if (nbChecked === 0) {
     createSpan("Veuillez choisir une ville.", "errorSpanVilles");
     correct = false;
   } else {
@@ -162,6 +162,3 @@ function validate() {
     modalFinFormulaire.style.display = "block";
   }
 }
-
-// Écoute du clic sur le bouton "Valider" du formulaire et appel de la fonction "validate"
-btnValider.addEventListener("click", validate);
