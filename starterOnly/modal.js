@@ -37,6 +37,7 @@ function showModal(bool) {
 function launchModal() {
   // Modification des styles CSS pour rendre la modal visible
   showModal(true);
+  resetForm();
 }
 
 // Écoute du clic sur le bouton "fermer" de la modal
@@ -74,11 +75,61 @@ function validateEmail(email) {
   return regex.test(email);
 }
 
+// validation nom / prenom
+function validateIdentity(identity) {
+  const regex = /^[a-zA-Z]{2,}(?:(-|\s)[a-zA-Z]{2,})*$/;
+  return regex.test(identity);
+}
+
+//validation nombre de trois
+function verificationNbTournois(tournois) {
+  const regex = /^(?:0|[1-9][0-9]?|99)$/;
+  return regex.test(tournois);
+}
+
+//function verification date de naissance
+function estMajeur(dateNaissance) {
+  const today = new Date();
+  const birthDate = new Date(dateNaissance);
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  if (
+    birthDate.getMonth() > today.getMonth() ||
+    (birthDate.getMonth() === today.getMonth() &&
+      birthDate.getDate() > today.getDate())
+  ) {
+    age--;
+  }
+  if (age >= 18) {
+    return true;
+  }
+}
+
+// reset form
+function resetForm() {
+  document.getElementById("form-modal").reset();
+  const spanIds = [
+    "errorSpanPrenom",
+    "errorSpanNom",
+    "errorSpanEmail",
+    "errorSpanNaissance",
+    "errorSpanNbTournoi",
+    "errorSpanVilles",
+    "errorSpanCondition",
+  ];
+  spanIds.forEach((spanId) => {
+    document.getElementById(spanId).innerHTML = "";
+  });
+
+  modalContent.style.display = "block";
+  modalFinFormulaire.style.display = "none";
+}
+
 // Fonction de validation du formulaire
 function validate() {
   // Récupération des valeurs des champs du formulaire
-  const firstName = document.getElementById("first").value;
-  const lastName = document.getElementById("last").value;
+  const firstName = document.getElementById("first").value.trim();
+  const lastName = document.getElementById("last").value.trim();
   const email = document.getElementById("email").value;
   const birthdate = document.getElementById("birthdate").value;
   const quantity = document.getElementById("quantity").value;
@@ -89,18 +140,18 @@ function validate() {
   let correct = true;
 
   // Validation individuelle des champs
-  if (firstName.length < 2) {
+  if (!validateIdentity(firstName)) {
     createSpan(
-      "Veuillez entrer 2 caractères ou plus pour le champ du prénom.",
+      "Veuillez entrer un prénom valide et avec plus de 2 caractères.",
       "errorSpanPrenom"
     );
     correct = false;
   } else {
     document.getElementById("errorSpanPrenom").innerHTML = "";
   }
-  if (lastName.length < 2) {
+  if (!validateIdentity(lastName)) {
     createSpan(
-      "Veuillez entrer 2 caractères ou plus pour le champ du nom.",
+      "Veuillez entrer un nom valide et avec plus de 2 caractères.",
       "errorSpanNom"
     );
     correct = false;
@@ -114,9 +165,9 @@ function validate() {
     document.getElementById("errorSpanEmail").innerHTML = "";
   }
 
-  if (birthdate.trim() == "") {
+  if (!estMajeur(birthdate)) {
     createSpan(
-      "Veuillez entrer votre date de naissance.",
+      "Vous devez être majeur pour vous inscrire.",
       "errorSpanNaissance"
     );
     correct = false;
@@ -124,8 +175,11 @@ function validate() {
     document.getElementById("errorSpanNaissance").innerHTML = "";
   }
 
-  if (quantity === "") {
-    createSpan("Veuillez remplir le champ.", "errorSpanNbTournoi");
+  if (!verificationNbTournois(quantity)) {
+    createSpan(
+      "Vous ne pouvez pas dépasser 99 tournois.",
+      "errorSpanNbTournoi"
+    );
     correct = false;
   } else {
     document.getElementById("errorSpanNbTournoi").innerHTML = "";
