@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "gh-pages": "^6.2.0"
+  },
+  "scripts": {
+    "predeploy": "echo 'No build step required for this project'",
+    "deploy": "gh-pages -d ."
+  }
+}
