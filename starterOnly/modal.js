@@ -40,6 +40,26 @@ function launchModal() {
   resetForm();
 }
 
+// reset form
+function resetForm() {
+  document.getElementById("form-modal").reset();
+  const spanIds = [
+    "errorSpanPrenom",
+    "errorSpanNom",
+    "errorSpanEmail",
+    "errorSpanNaissance",
+    "errorSpanNbTournoi",
+    "errorSpanVilles",
+    "errorSpanCondition",
+  ];
+  spanIds.forEach((spanId) => {
+    document.getElementById(spanId).innerHTML = "";
+  });
+
+  modalContent.style.display = "block";
+  modalFinFormulaire.style.display = "none";
+}
+
 // Écoute du clic sur le bouton "fermer" de la modal
 btnFermer.addEventListener("click", () => {
   // Appel de la fonction pour rendre la modal non visible
@@ -103,26 +123,6 @@ function estMajeur(dateNaissance) {
   if (age >= 18) {
     return true;
   }
-}
-
-// reset form
-function resetForm() {
-  document.getElementById("form-modal").reset();
-  const spanIds = [
-    "errorSpanPrenom",
-    "errorSpanNom",
-    "errorSpanEmail",
-    "errorSpanNaissance",
-    "errorSpanNbTournoi",
-    "errorSpanVilles",
-    "errorSpanCondition",
-  ];
-  spanIds.forEach((spanId) => {
-    document.getElementById(spanId).innerHTML = "";
-  });
-
-  modalContent.style.display = "block";
-  modalFinFormulaire.style.display = "none";
 }
 
 // Fonction de validation du formulaire
